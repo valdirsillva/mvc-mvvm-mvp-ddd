@@ -1,0 +1,15 @@
+Configurar projeto com express e typescript
+
+1. npm install express && npm install -D @types/express - Rode o comando para instalar o express e as dependencias
+2. npm install -D typescript - instala Typescript como dependencias de desenvolvimento
+3. npx tsc --init - Para gerar o tsconfig, arquivo de configurações necessário para uso do Typescript
+4. npm add -D ts-node-dev
+5. no package.json configurar:
+"scripts": {
+  "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/server.ts",
+  "build": "tsc"
+},
+
+Script dev esta escutando em tempo real as alterações no nosso server.ts que é o arquivo principal que carrega toda os demais módulos da aplicação e também definimos para ignorar todos os arquivos que estão na pasta node_modules isso ganhamos performance e também não há necessidade de alterarmos esses arquivos.
+
+O Script build ele simplesmente gera nossa aplicação TypeScript para JavaScript no diretório dist que foi toda a configuração que fizemos na etapa anterior .
