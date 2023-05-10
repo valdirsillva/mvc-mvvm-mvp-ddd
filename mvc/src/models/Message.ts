@@ -1,12 +1,8 @@
 interface MessageProps {
-    uuid: number;
+    uuid: number | string;
     name: string;
     message: string;
     createdAt: Date;
-}
-
-interface MessagesData {
-    messages: MessageProps
 }
 
 export class Message {
@@ -14,30 +10,32 @@ export class Message {
     private name: string;
     private message: string;
     private createdAt: Date;
-    private messages: MessagesData[];
+    private messages: MessageProps[];
 
     constructor(uuid: number, name: string, message: string, createdAt: Date) {
         this.uuid = uuid;
         this.name = name;
         this.message = message;
         this.createdAt = new Date();
-
         this.messages = []
     }
 
     public insertMessage(): boolean {
-        if (this.name != '' && this.message.length > 0) {
-            let newMessage: MessageProps = {
+        let newMessage: MessageProps;
+
+        if (this.name != '' && this.message.trim().length > 0) {
+            newMessage = {
                 uuid: this.uuid,
                 name: this.name,
                 message: this.message,
                 createdAt: this.createdAt
             }
 
+            this.messages.push(newMessage)
+            return true;
         }
-        this.messages.push(newMessage)
 
-        return true;
+        return false
     }
 
     public getUuid(): number {
@@ -52,7 +50,11 @@ export class Message {
         return this.createdAt;
     }
 
-    public getMessage(): MessagesData[] {
+    public getMessage(): string {
+        return this.message;
+    }
+
+    public getMessages() {
         return this.messages;
     }
 }

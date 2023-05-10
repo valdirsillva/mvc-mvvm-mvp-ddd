@@ -1,7 +1,7 @@
 import { Response } from 'express'
 
 interface MessageData {
-    id: number;
+    uuid: number;
     name: string;
     message: string;
     createdAt: Date;

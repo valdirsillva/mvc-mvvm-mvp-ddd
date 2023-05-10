@@ -12,7 +12,11 @@ export class MessageController {
     }
 
     public getMessages(req: Request, res: Response) {
-
+        const uuid = this.message.getUuid()
+        const name = this.message.getName()
+        const message = this.message.getMessage()
+        const createdAt = this.message.getCreatedAt()
+        this.messageView.render(res, { uuid, name, message, createdAt })
     }
 
 }
