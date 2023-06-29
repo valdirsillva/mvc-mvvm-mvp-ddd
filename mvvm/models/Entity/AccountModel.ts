@@ -28,7 +28,7 @@ export class AccountModel {
         return true;
     }
 
-    public deposit(value: number): boolean {
+    public deposit(account: string, value: number): boolean {
         if (value < 0) {
             return false;
         }
@@ -37,6 +37,10 @@ export class AccountModel {
         const transaction: Transaction = { type: "deposito", value, data: new Date() }
         this.transactions.push(transaction)
         return true;
+    }
+
+    public getAccountNumber(): string {
+        return this.accountNumber;
     }
 
     public getClient(): Client {
